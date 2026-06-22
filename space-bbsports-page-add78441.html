@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bb体育 – 聚焦运动信息与平台体验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fbe9d2 0%, #f7d9b3 80%, #f2cba0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem 3rem;
+            line-height: 1.6;
+            color: #3b2a1e;
+        }
+
+        .page {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 250, 242, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2.2rem 2.5rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 12px 28px rgba(170, 120, 70, 0.15), 0 4px 8px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 235, 210, 0.6);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 36px rgba(170, 120, 70, 0.18);
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 2rem 2.8rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #9b6b43, #7a5234);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.25rem;
+            color: #5e4532;
+            max-width: 600px;
+            margin: 0.5rem auto 1.8rem;
+            background: rgba(245, 225, 200, 0.5);
+            display: inline-block;
+            padding: 0.2rem 1.6rem;
+            border-radius: 50px;
+        }
+
+        .hero p {
+            font-size: 1.08rem;
+            color: #4f3a2a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero p a {
+            color: #8b5e3c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #dbb794;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .hero p a:hover {
+            border-bottom-color: #8b5e3c;
+            color: #6e452b;
+        }
+
+        /* 优势区 */
+        .advantages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .advantage-item {
+            flex: 1 1 180px;
+            min-width: 140px;
+            background: #fffcf5;
+            border-radius: 24px;
+            padding: 1.4rem 1rem;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(140, 100, 60, 0.08);
+            border: 1px solid #f0dbc8;
+        }
+
+        .advantage-item .num {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #b28052;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+
+        .advantage-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4a3422;
+            margin-bottom: 0.2rem;
+        }
+
+        .advantage-item p {
+            font-size: 0.95rem;
+            color: #5f4b3a;
+        }
+
+        /* 说明区 */
+        .explain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .explain-block {
+            background: #fffcf5;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid #eddccb;
+        }
+
+        .explain-block h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #7a5234;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .explain-block p {
+            color: #4a3b2e;
+            font-size: 0.98rem;
+        }
+
+        .inline-link {
+            color: #8b5e3c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1.5px solid #d6b594;
+            transition: 0.15s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #7a4f30;
+            color: #6e452b;
+        }
+
+        /* FAQ摘要 */
+        .faq-items {
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #5e3f2b;
+            margin: 1rem 0 0.2rem;
+            font-size: 1.02rem;
+        }
+
+        .faq-a {
+            color: #4e3b2d;
+            padding-left: 0.4rem;
+            margin-bottom: 0.6rem;
+            border-left: 3px solid #e4c9b2;
+            padding-left: 1rem;
+        }
+
+        .faq-a a {
+            color: #8b5e3c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #d6b594;
+            font-weight: 500;
+        }
+
+        .faq-a a:hover {
+            color: #6e452b;
+        }
+
+        /* 底部链接 */
+        .bottom-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 2.2rem;
+            padding: 0.8rem 0 0.2rem;
+        }
+
+        .bottom-links a {
+            color: #6b4d36;
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 500;
+            background: #f0e0cf;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid #e4cdb8;
+        }
+
+        .bottom-links a:hover {
+            background: #dcc1aa;
+            color: #4b3424;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2.2rem;
+            font-size: 0.9rem;
+            color: #6b5543;
+        }
+
+        .footer-note a {
+            color: #7a5234;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 680px) {
+            body { padding: 1.2rem 1rem 2rem; }
+
+            .card { padding: 1.6rem 1.2rem; }
+
+            .hero h1 { font-size: 2.2rem; }
+
+            .hero .sub { font-size: 1rem; }
+
+            .explain-grid { grid-template-columns: 1fr; }
+
+            .advantages { flex-direction: column; }
+
+            .advantage-item { flex: 1 1 auto; }
+
+            .bottom-links { gap: 0.6rem 1.2rem; }
+
+            .bottom-links a { font-size: 0.9rem; padding: 0.3rem 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- hero -->
+        <div class="card hero">
+            <h1>bb体育 · 运动信息聚合</h1>
+            <div class="sub">快速识别平台用途 & 内容定位</div>
+            <p>
+                <a href="https://space-bbsports.com">bb体育</a> 是一个围绕体育赛事、运动资讯与社区互动搭建的信息平台。
+                无论你是想了解热门比赛动态、查阅运动数据，还是寻找同好交流空间，这里都提供了清晰的内容入口与功能指引。
+            </p>
+        </div>
+
+        <!-- 优势区：用数字或简明条目展示特点 -->
+        <div class="card">
+            <h2 style="font-size: 1.5rem; font-weight: 600; color: #6b4a31; margin-bottom: 0.6rem;">为什么值得留意</h2>
+            <div class="advantages">
+                <div class="advantage-item">
+                    <div class="num">⚽</div>
+                    <h3>赛事覆盖</h3>
+                    <p>足球、篮球、网球等主流项目，以及新兴运动信息。</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="num">📊</div>
+                    <h3>数据参考</h3>
+                    <p>提供历史对阵、近期状态等辅助判断的统计内容。</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="num">💬</div>
+                    <h3>社区氛围</h3>
+                    <p>用户可围绕比赛表达观点，分享运动见解。</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="num">🔍</div>
+                    <h3>便捷查找</h3>
+                    <p>分类导航与搜索帮助快速定位感兴趣的内容。</p>
+                </div>
+            </div>
+            <p style="margin-top: 1.2rem; color: #5f4533;">
+                如果你经常需要查看体育资讯或参与讨论，<a href="https://space-bbsports.com" class="inline-link">bb体育</a> 的整合形式可以节省不少时间。
+            </p>
+        </div>
+
+        <!-- 说明区：两个卡片式说明块 -->
+        <div class="card">
+            <h2 style="font-size: 1.5rem; font-weight: 600; color: #6b4a31; margin-bottom: 0.2rem;">平台内容说明</h2>
+            <div class="explain-grid">
+                <div class="explain-block">
+                    <h3>📰 资讯与赛事</h3>
+                    <p>汇集各大联赛、杯赛的赛程、比分简讯与赛后总结。内容以事实为基础，不包含未经证实的预测或诱导性表述。你可以通过 <a href="https://space-bbsports.com" class="inline-link">bb体育</a> 的赛事板块浏览近期焦点。</p>
+                </div>
+                <div class="explain-block">
+                    <h3>🧭 导航与体验</h3>
+                    <p>页面结构围绕“快速找到所需信息”设计。无论是按运动种类筛选，还是查看热门讨论，都保持清晰的层级。平台不要求注册即可浏览大部分公共内容，降低使用门槛。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="card">
+            <h2 style="font-size: 1.5rem; font-weight: 600; color: #6b4a31; margin-bottom: 0.4rem;">常见疑问摘要</h2>
+            <div class="faq-items">
+                <div class="faq-q">❓ 这个网站主要用来做什么？</div>
+                <div class="faq-a">
+                    简单说，它是一个体育信息站。你可以在这里看到比赛结果、日程、运动相关的讨论，以及一些数据汇总。如果你想了解具体栏目，直接访问 <a href="https://space-bbsports.com">bb体育</a> 首页即可。
+                </div>
+
+                <div class="faq-q">❓ 是否需要付费或注册？</div>
+                <div class="faq-a">
+                    浏览大部分内容无需付费，部分社区功能（如发表评论）可能需要注册账号。具体规则以平台实际页面说明为准。
+                </div>
+
+                <div class="faq-q">❓ 数据更新频率如何？</div>
+                <div class="faq-a">
+                    赛程与比分在主要赛事期间保持同步更新，历史数据也会定期维护。非实时数据仅供参考，请以官方赛事信息为准。
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #5f4533;">
+                更多细节可以浏览 <a href="https://space-bbsports.com" class="inline-link">bb体育</a> 的帮助或关于页面。
+            </p>
+        </div>
+
+        <!-- 底部链接：整洁的按钮感 -->
+        <div class="card" style="padding: 1.2rem 1.8rem;">
+            <div class="bottom-links">
+                <a href="https://space-bbsports.com">bb体育</a>
+                <a href="#">赛事日程</a>
+                <a href="#">数据统计</a>
+                <a href="#">社区讨论</a>
+                <a href="#">帮助中心</a>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <p>基于公开信息整理 · 内容仅供了解平台用途<br>
+            <a href="https://space-bbsports.com">bb体育</a> 及关联页面以实际运营为准</p>
+        </div>
+
+    </div>
+</body>
+</html>
